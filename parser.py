@@ -72,9 +72,9 @@ def read_book_to_file(book_url: str, file_format: str):
 
 def main():
     logging.basicConfig(level=logging.DEBUG, format='%(levelname) -s at %(asctime) -s: %(message)s')
-    url = 'http://loveread.ec/view_global.php?id=101753'
+    url = 'http://loveread.me/read_book.php?id=8107'
 
-    read_book_to_file(url, 'epub')
+    read_book_to_file(url, 'txt')
     logging.info('book read')
 
 
