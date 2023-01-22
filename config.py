@@ -50,12 +50,12 @@ class Config:
         return self._bot_config
 
     def read_config(self, config_file: str):
-        cfg = configparser.ConfigParser()
+        cfg = configparser.SafeConfigParser(os.environ)
         cfg.read(config_file)
 
         self._logger_config._format = cfg['LOGGER']['format']
         self._logger_config._level = cfg['LOGGER']['level']
 
         self._bot_config._allowed_formats = cfg['BOT']['allowed_formats'].split(',')
-        self._bot_config._token_env = os.getenv(cfg['BOT']['token_env'])
+        self._bot_config._token_env = cfg['BOT']['token_env']
         self._bot_config._bot_name = cfg['BOT']['name']
