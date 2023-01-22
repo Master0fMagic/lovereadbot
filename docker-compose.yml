@@ -3,6 +3,6 @@ services:
     container_name: love-read-bot
     build: .
     volumes:
-      - ./config.ini:/usr/src/app/config.ini
+      - ./config.ini:/app/config.ini
     environment:
       - BOT_TOKEN=5309101557:AAG8Z0KblN6pzaQ5Z_U__Ff7N4P6NnGaWmk
