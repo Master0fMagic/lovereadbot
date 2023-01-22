@@ -43,5 +43,5 @@ jobs:
         with:
           context: .
           push: true
-          tags: ${{ vars.DOCKER_NAMESPACE }}/${{ vars.DOCKER_REPO }}:${{ vars.SHA }}
+          tags: ${{ vars.DOCKER_NAMESPACE }}/${{ vars.DOCKER_REPO }}:$SHA
           labels: ${{ steps.meta.outputs.labels }}
