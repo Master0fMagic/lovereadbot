@@ -26,7 +26,7 @@ jobs:
       - uses: actions/checkout@v2
       - name: check envs
         run: |
-          echo ${{secrets.DOCKER_USERNAME}}, ${{secrets.DOCKER_PASSWORD}}, ${{ vars.DOCKER_NAMESPACE }}/${{ vars.DOCKER_REPO }}:${{ GITHUB_SHA }}
+          echo ${{secrets.DOCKER_USERNAME}}, ${{secrets.DOCKER_PASSWORD}}, ${{ vars.DOCKER_NAMESPACE }}/${{ vars.DOCKER_REPO }}:${{ env.GITHUB_SHA }}
       - name: docker login
         env:
           DOCKER_USER: ${{secrets.DOCKER_USERNAME}}
@@ -34,7 +34,7 @@ jobs:
         run: |
           docker login -u $DOCKER_USER -p $DOCKER_PASSWORD
       - name: Build the Docker image
-        run: docker build . -t ${{ vars.DOCKER_NAMESPACE }}/${{ vars.DOCKER_REPO }}:${{ GITHUB_SHA }}
+        run: docker build . -t ${{ vars.DOCKER_NAMESPACE }}/${{ vars.DOCKER_REPO }}:${{ env.GITHUB_SHA }}
 
       - name: Docker Push
-        run: docker push ${{ vars.DOCKER_NAMESPACE }}/${{ vars.DOCKER_REPO }}:${{ GITHUB_SHA }}
+        run: docker push ${{ vars.DOCKER_NAMESPACE }}/${{ vars.DOCKER_REPO }}:${{ env.GITHUB_SHA }}
