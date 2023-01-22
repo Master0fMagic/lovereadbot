@@ -1,16 +1,26 @@
-# This is a sample Python script.
+import logging
 
-# Press Shift+F10 to execute it or replace it with your code.
-# Press Double Shift to search everywhere for classes, files, tool windows, actions, and settings.
-
-
-def print_hi(name):
-    # Use a breakpoint in the code line below to debug your script.
-    print(f'Hi, {name}')  # Press Ctrl+F8 to toggle the breakpoint.
+import config
+import parser as ps
+import bot
 
 
-# Press the green button in the gutter to run the script.
+def main():
+    cfg = config.Config()
+    cfg.read_config('config.ini')
+
+    setup_logger(cfg.logger_config)
+
+    parser = ps.Parser(cfg.bot_config.bot_name)
+
+    bt = bot.LoveReadBot(cfg.bot_config, parser)
+    bt.setup()
+    bt.start_polling()
+
+
+def setup_logger(cfg: config.Config.LoggerConfig):
+    logging.basicConfig(level=cfg.level, format=cfg.format)
+
+
 if __name__ == '__main__':
-    print_hi('PyCharm')
-
-# See PyCharm help at https://www.jetbrains.com/help/pycharm/
+    main()

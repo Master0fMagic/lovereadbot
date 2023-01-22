@@ -1,0 +1,13 @@
+services:
+  love-read-bot:
+    container_name: love-read-bot
+    build: .
+    volumes:
+      - ./config.ini:/app/config.ini
+    environment:
+      - BOT_TOKEN=
+      - BOT_ALLOWED_FORMATS=txt
+      - BOT_NAME=https://t.me/lovereaddownloadbootbot
+      - LOG_LEVEL=DEBUG
+      - |
+        LOG_FORMAT=%%(levelname) -s at %%(asctime) -s: %%(message)s
