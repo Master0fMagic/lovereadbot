@@ -36,12 +36,12 @@ jobs:
         id: meta
         uses: docker/metadata-action@98669ae865ea3cffbcbaa878cf57c20bbf1c6c38
         with:
-          images: ${{ DOCKER_NAMESPACE }}/${{ DOCKER_REPO }}
+          images: ${{ vars.DOCKER_NAMESPACE }}/${{ vars.DOCKER_REPO }}
 
       - name: Build and push Docker image
         uses: docker/build-push-action@ad44023a93711e3deb337508980b4b5e9bcdc5dc
         with:
           context: .
           push: true
-          tags: ${{ DOCKER_NAMESPACE }}/${{ DOCKER_REPO }}:${{ git.sha }}
+          tags: ${{ vars.DOCKER_NAMESPACE }}/${{ vars.DOCKER_REPO }}:${{ git.sha }}
           labels: ${{ steps.meta.outputs.labels }}
