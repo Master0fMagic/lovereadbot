@@ -21,6 +21,7 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+    environment: non-commercial-deploy
     steps:
       - uses: actions/checkout@v2
       - name: check envs
@@ -36,4 +37,4 @@ jobs:
         run: docker build . -t ${{ vars.DOCKER_NAMESPACE }}/${{ vars.DOCKER_REPO }}:$SHA
 
       - name: Docker Push
-        run: docker push ${{ vars.DOCKER_NAMESPACE }}/${{ vars.DOCKER_REPO }}
+        run: docker push ${{ vars.DOCKER_NAMESPACE }}/${{ vars.DOCKER_REPO }}:$SHA
